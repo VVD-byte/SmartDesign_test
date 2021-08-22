@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import mongoengine
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-g=9ab)x4-gout#%kri46b6f7)dckodqe0n2c+9)n6sfc$#$xt7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -38,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'rest_framework',
     'api'
 ]
 
@@ -75,12 +76,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASE_NAME = ''
-DATABASE_HOST = ''
-USERNAME = ''
-PASSWORD = ''
-mongoengine.connect(db=DATABASE_NAME, host=DATABASE_HOST, username=USERNAME, password=PASSWORD)
-
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'Test',
+            'CLIENT': {
+                'host': 'localhost',
+                'port': 27017
+            }
+        }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

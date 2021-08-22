@@ -7,3 +7,10 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product
         fields = '__all__'
+
+
+class NameProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Product
+        fields = ('id', 'name', )
